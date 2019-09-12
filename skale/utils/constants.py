@@ -9,7 +9,7 @@ GAS = {
     'set_periods': 200000,
     'delete_node': 600000,
     'delete_node_by_root': 600000,
-    'delete_schain': 600000
+    'delete_schain': 1600000
 }
 
 OP_TYPES = {'create_node': 0x1, 'create_schain': 0x10}

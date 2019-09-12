@@ -88,10 +88,13 @@ def generate_accounts(skale, base_wallet, n, debug=True):
         filename = get_filename(i, schain_info['schain_struct']['name'])
         save_info(filename, schain_info, wallet)
 
-        logger.info(LONG_LINE)
+        logger.warning(LONG_LINE)
 
 
 if __name__ == "__main__":
+    logger.warning('AAAAAAAAAAAAAAAAAAAAAAAAA')
+    logger.error('RRRR')
+
     skale = Skale(ENDPOINT, LOCAL_ABI_FILEPATH)
     base_wallet = init_wallet()
     amount = sys.argv[1] or NUMBER_OF_ACCOUNTS

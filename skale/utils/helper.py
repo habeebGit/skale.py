@@ -21,7 +21,6 @@
 import ipaddress
 import json
 import logging
-import os
 import random
 import socket
 import string
@@ -33,6 +32,8 @@ from time import sleep
 import yaml
 from eth_keys import keys
 from web3 import Web3
+
+from skale.utils.custom_log_formatter import CustomFormatter
 
 logger = logging.getLogger(__name__)
 
@@ -228,11 +229,10 @@ def check_receipt(receipt):
     return True
 
 
-def init_default_logger():
+def init_default_logger(colored=True):
     handlers = []
-    formatter = Formatter(
+    formatter = CustomFormatter() if colored else Formatter(
         '%(asctime)s - %(name)s - %(levelname)s - %(message)s')
-
     stream_handler = StreamHandler(sys.stderr)
     stream_handler.setFormatter(formatter)
     stream_handler.setLevel(logging.INFO)
