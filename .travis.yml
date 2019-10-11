@@ -26,6 +26,7 @@ jobs:
         - git clone https://${CI_USER_TOKEN}@github.com/skalenetwork/skale-manager.git
         - cd skale-manager/
         - npm i
+        - sed -i 's/petersburg/byzantium/g' truffle-config.js
         - PRIVATE_KEY=$SKALE_PY_TESTNET_PRIVATE_KEY npx truffle migrate --network SKALE_private_testnet
         - cp data/SKALE_private_testnet.json ../test_abi.json && cd ..
         - ./scripts/run-tests.sh
