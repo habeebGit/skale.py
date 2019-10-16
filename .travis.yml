@@ -5,7 +5,7 @@ cache: pip
 node_js:
   - "10.16.3"
 os: linux
-dist: xenial
+dist: bionic
 env:
   global:
     - NODE_OPTIONS="--max_old_space_size=4096"
@@ -25,11 +25,11 @@ jobs:
       script:
         - git clone https://${CI_USER_TOKEN}@github.com/skalenetwork/skale-manager.git
         - cd skale-manager/
+        - git checkout enhancement/SKALE-1684-Move-to-byzantium
         - npm i
         - cat truffle-config.js
         - sed -i 's/petersburg/byzantium/g' truffle-config.js
         - cat truffle-config.js
-        - cat package-lock.json
         - PRIVATE_KEY=$SKALE_PY_TESTNET_PRIVATE_KEY npx truffle migrate --network SKALE_private_testnet
         - cp data/SKALE_private_testnet.json ../test_abi.json && cd ..
         - ./scripts/run-tests.sh
