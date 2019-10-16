@@ -5,7 +5,7 @@ cache: pip
 node_js:
   - "10.16.3"
 os: linux
-dist: bionic
+dist: xenial
 env:
   global:
     - NODE_OPTIONS="--max_old_space_size=4096"
@@ -30,7 +30,7 @@ jobs:
         - sed -i 's/petersburg/byzantium/g' truffle-config.js
         - cat truffle-config.js
         - cat package-lock.json
-        - PRIVATE_KEY=$SKALE_PY_TESTNET_PRIVATE_KEY npx truffle migrate --network SKALE_private_testnet --dry-run
+        - PRIVATE_KEY=$SKALE_PY_TESTNET_PRIVATE_KEY npx truffle migrate --network SKALE_private_testnet
         - cp data/SKALE_private_testnet.json ../test_abi.json && cd ..
         - ./scripts/run-tests.sh
       after_script:
