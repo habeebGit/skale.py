@@ -26,10 +26,10 @@ jobs:
         - git clone https://${CI_USER_TOKEN}@github.com/skalenetwork/skale-manager.git
         - cd skale-manager/
         # - git checkout enhancement/SKALE-1684-Move-to-byzantium
-        - npm i
         - cat truffle-config.js
         - sed -i 's/petersburg/byzantium/g' truffle-config.js
         - cat truffle-config.js
+        - npm i
         - PRIVATE_KEY=$SKALE_PY_TESTNET_PRIVATE_KEY NETWORK=SKALE_private_testnet bash scripts/deploy.sh
         - cp data/SKALE_private_testnet.json ../test_abi.json && cd ..
         - ./scripts/run-tests.sh
