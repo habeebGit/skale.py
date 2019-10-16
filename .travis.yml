@@ -3,7 +3,7 @@ python:
 - '3.6'
 cache: pip
 node_js:
-  - "10"
+  - "10.16.3"
 os: linux
 dist: bionic
 env:
