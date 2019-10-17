@@ -172,7 +172,7 @@ def test_create_node_delete_node_by_root(skale, wallet):
     assert len(active_node_ids_after) == len(active_node_ids_before)
 
 
-def test_create_deregister_node_create_schain(skale, wallet):
+def test_create_deregister_node(skale, wallet):
     # Create node
     active_node_ids_before = skale.nodes_data.get_active_node_ids()
 
