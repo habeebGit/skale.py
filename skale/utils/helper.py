@@ -166,7 +166,7 @@ def send_eth(web3, account, amount, wallet):
         'value': amount,
         'gasPrice': web3.eth.gasPrice,
         'gas': 22000,
-        'nonce': eth_nonce + 1
+        'nonce': eth_nonce
     }
     signed_txn = web3.eth.account.signTransaction(
         txn, private_key=wallet['private_key'])
