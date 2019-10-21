@@ -22,7 +22,7 @@ before_script:
 jobs:
   include:
     - stage: test
-      prepare:
+      install:
         - git clone https://${CI_USER_TOKEN}@github.com/skalenetwork/skale-manager.git
         - cd skale-manager/
         - git checkout stable
