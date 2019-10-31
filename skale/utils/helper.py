@@ -21,18 +21,28 @@
 import ipaddress
 import json
 import logging
+import os
 import random
 import socket
 import string
 import sys
 from logging import Formatter, StreamHandler
+from pathlib import Path
 from random import randint
 from time import sleep
 
 from eth_keys import keys
+from filelock import FileLock
 from web3 import Web3
 
 logger = logging.getLogger(__name__)
+
+
+SKALE_VOL = os.getenv('SKALE_DIR_HOST') or Path.home()
+SKALE_NONCE_LOCK_PATH = os.path.join(SKALE_VOL, 'nonce.lock')
+
+
+lock = FileLock(SKALE_NONCE_LOCK_PATH)
 
 
 def format(fields):
@@ -82,7 +92,8 @@ def get_nonce(skale, address):
 
 
 def sign_and_send(skale, method, gas_amount, wallet):
-    eth_nonce = get_nonce(skale, wallet['address'])
+    with lock:
+        eth_nonce = get_nonce(skale, wallet['address'])
     logger.info(f'Method {method}. Transaction nonce: {eth_nonce}')
     txn = method.buildTransaction({
         'gas': gas_amount,

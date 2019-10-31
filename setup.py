@@ -37,6 +37,7 @@ setup(
     include_package_data=True,
     install_requires=[
         "web3==4.9.2",
+        "filelock==3.0.12"
         "asyncio==3.4.3",
         "pyyaml==5.1.2"
     ],
