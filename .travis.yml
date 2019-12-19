@@ -29,6 +29,7 @@ jobs:
       script:
         - git clone https://${CI_USER_TOKEN}@github.com/skalenetwork/skale-manager.git
         - cd skale-manager/
+        - npm install -g node-gyp
         - yarn install
         - ENDPOINT=$ENDPOINT_HTTP PRIVATE_KEY=$SKALE_PY_TESTNET_PRIVATE_KEY npx truffle migrate --network SKALE_private_testnet
         - cp data/SKALE_private_testnet.json ../test_abi.json && cd ..
