@@ -27,7 +27,7 @@ jobs:
   include:
     - stage: test
       script:
-        - git clone https://${CI_USER_TOKEN}@github.com/skalenetwork/skale-manager.git
+        - git clone -b enhancement/fix-version-problem https://${CI_USER_TOKEN}@github.com/skalenetwork/skale-manager.git
         - cd skale-manager/
         - npm install -g node-gyp
         - yarn install
