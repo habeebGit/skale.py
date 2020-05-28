@@ -4,7 +4,6 @@ from skale.dataclasses import CurrentNodeInfo
 from skale.schain_config.generator import get_nodes_for_schain
 from skale.schain_config.generator import (generate_schain_info, generate_schain_config,
                                            generate_skale_schain_config)
-from skale.utils.helper import ip_from_bytes
 from tests.constants import (DEFAULT_NODE_NAME, ZERO_ADDRESS, DEFAULT_SCHAIN_NAME, TEST_URL,
                              MIN_NODES_IN_SCHAIN, IMA_DATA_FILEPATH)
 
@@ -33,7 +32,7 @@ def test_generate_node_info():
         node_name=DEFAULT_NODE_NAME,
         node_id=0,
         base_port=10011,
-        bind_ip=ip_from_bytes(TEST_NODE_IP_BYTES),
+        bind_ip='0.0.0.0',
         ima_mainnet=TEST_URL,
         ima_mp_schain=ZERO_ADDRESS,
         ima_mp_mainnet=ZERO_ADDRESS,
@@ -43,6 +42,7 @@ def test_generate_node_info():
     ).to_config()
 
     assert isinstance(node_info['bindIP'], str)
+    assert node_info['bindIP'] == '0.0.0.0'
     assert isinstance(node_info['nodeID'], int)
     assert isinstance(node_info['nodeName'], str)
     assert isinstance(node_info['basePort'], int)
